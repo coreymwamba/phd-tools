@@ -40,8 +40,8 @@ The original way I did was messy, and I found a way through trials and constant 
     ```
     This step is an important one -- remember it!
 6. Optionally give access to supervisory team/critical friends. These people will also need accounts.
-   On Github, you can have up to three "collaborators". Go to *Settings > Collaborators*
-   On Gitlab, you can set *roles* for "members" of your project. Go to *Settings > Members*.
+    On Github, you can have up to three "collaborators". Go to *Settings > Collaborators*
+    On Gitlab, you can set *roles* for "members" of your project. Go to *Settings > Members*.
    
 
 [co]: https://github.com/brndnmtthws/conky
