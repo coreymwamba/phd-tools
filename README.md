@@ -23,3 +23,6 @@ d. Follow instructions to link folder to Git repo
 e. Optionally give access to supervisory team/critical friends (Github only; you can add them as collaborators and they will also need Github accounts)
 
 
+[co]: https://github.com/brndnmtthws/conky
+[lo]: https://libreoffice.org
+[ex]: https://sno.phy.queensu.ca/~phil/exiftool/
