@@ -8,10 +8,10 @@ The tools are for **Linux systems**, as Linux is the only operating system I use
 
 The software I used:
 
-1. [Conky][co]
-2. [Libreoffice/Openoffice][lo]
-3. [exiftool][ex]
-4. A Git hosting service (like Github, Gitlab, &c.)
++ [Conky][co]
++ [Libreoffice/Openoffice][lo]
++ [exiftool][ex]
++ A Git hosting service (like Github, Gitlab, &c.)
 
 ## setup
 
@@ -19,11 +19,11 @@ The original way I did was messy, and I found a way through trials and constant 
 
 ### 1. Set up a private Git repository (or some form of version control store)
 
-a. Make a folder on you computer where your chapters/sections/media are going to be stored.
-b. Sign up for an account on a Git hosting service
-c. Make a private repo (these are free on both Github and Gitlab)
-d. Follow instructions to link folder to Git repo
-e. Optionally give access to supervisory team/critical friends (Github only; you can add them as collaborators and they will also need Github accounts)
+1. Make a folder on you computer where your chapters/sections/media are going to be stored.
+2. Sign up for an account on a Git hosting service
+3. Make a private repo (these are free on both Github and Gitlab)
+4. Follow instructions to link folder to Git repo
+5. Optionally give access to supervisory team/critical friends (Github only; you can add them as collaborators and they will also need Github accounts)
 
 
 [co]: https://github.com/brndnmtthws/conky
