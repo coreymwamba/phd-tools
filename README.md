@@ -20,6 +20,6 @@ a. Make a folder on you computer where your chapters/sections/media are going to
 b. Sign up for an account on a Git hosting service
 c. Make a private repo (these are free on both Github and Gitlab)
 d. Follow instructions to link folder to Git repo
-e. Give access to supervisory team/critical friends
+e. Optionally give access to supervisory team/critical friends (Github only; you can add them as collaborators and they will also need Github accounts)
 
 
