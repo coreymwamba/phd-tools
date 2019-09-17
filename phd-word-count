@@ -1,0 +1,47 @@
+#!/bin/bash
+# phd-word-count - counts words of ODT files in a folder, spits them out to txt, csv, and conky
+#setting variables here so you can use this in cron
+PHD_SECTIONS_PATH=/run/media/corey/CMDATA/phd/sections
+PATH=$PATH:/usr/bin/vendor_perl
+csvoutput=/tmp/phd-csv-$(date -I).csv
+echo "filename,title,word count,keywords,due" > $csvoutput
+txtoutput=/tmp/phd-txt-$(date -I).txt
+output=/home/corey/phdwords
+conkyoutput=/tmp/phd-conky-$(date -I).txt
+
+#change extension to doc(x) if needed
+for f in $PHD_SECTIONS_PATH/*.odt;
+do
+T=$(exiftool -'Title' -S -t $f)
+K=$(echo -n "#" && exiftool -'Keyword' -s3 -a -T $f | sed -e 's/\ /\_/g' | sed -e 's/\t/\ \#/g')
+D=$(exiftool -'Description' -S -t $f)
+DUE=$(exiftool -s3 -"User-defined" $f)
+fn=${f%.odt} # change to doc(x) if you need
+F=$(basename $fn)
+libreoffice --convert-to txt --outdir /home/corey/data $f > /dev/null
+WC=$(wc -w /home/corey/data/$F.txt | cut -d ' ' -f 1)
+#how you want the text lines to be formatted
+# $T = Title; $K = Keywords; $D = Description $DUE = Due (set this as a user-defined property); $F = filename; $WC = word count
+
+TXT_FORMAT="$T ($WC) $K due:$DUE"
+CSV_FORMAT="$F,$T,$WC,$K,$DUE"
+OUT_FORMAT="$F: $T | $WC | $K"
+CONKY_FORMAT="\${color 9987ed}$DUE \${color FFFFFF}$T ($WC) \${color AE9961}$K"
+
+echo "$CSV_FORMAT" >> $csvoutput
+echo "$TXT_FORMAT" >> $txtoutput
+echo "$CONKY_FORMAT" | sed -e 's/\#/\@/g' >> $conkyoutput 
+echo $WC >> /tmp/word-count-sum
+done
+sum=0 
+for i in $(</tmp/word-count-sum); 
+do 
+((sum += i));
+done
+[[ -f $conkyoutput ]] && mv $conkyoutput $HOME/conky-todo.txt 
+[[ -f $txtoutput ]] && mv $txtoutput $PHD_SECTIONS_PATH/phd-word-count-output.txt
+[[ -f $csvoutput ]] && mv $csvoutput $PHD_SECTIONS_PATH/phd-word-count-output.csv
+rm /tmp/word-count-sum
+echo $sum > $output
+
+exit 0
