@@ -1,10 +1,11 @@
 #!/bin/bash
-for f in /run/media/corey/CMDATA/phd/final/*.odt;
+pathforthesis=$HOME/phd-thesis
+for f in $pathforthesis/*.odt;
 do
 fn=${f%.odt}
-libreoffice --convert-to txt --outdir /home/corey/data $f 
+libreoffice --convert-to txt --outdir $HOME/data $f 
 done
 F=$(basename $fn)
-WC=$(wc -w /home/corey/data/$F.txt | cut -d ' ' -f 1)
-echo $WC > ~/phdwords 
+WC=$(wc -w $HOME/data/$F.txt | cut -d ' ' -f 1)
+echo $WC > $HOME/data/phdwords 
 exit 0
