@@ -1,0 +1,10 @@
+#!/bin/bash
+for f in /run/media/corey/CMDATA/phd/final/*.odt;
+do
+fn=${f%.odt}
+libreoffice --convert-to txt --outdir /home/corey/data $f 
+done
+F=$(basename $fn)
+WC=$(wc -w /home/corey/data/$F.txt | cut -d ' ' -f 1)
+echo $WC > ~/phdwords 
+exit 0

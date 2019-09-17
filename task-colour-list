@@ -1,0 +1,4 @@
+#!/bin/bash
+sed -r -e 's/\B\@(\w+)/\$\{color 9987ed\}\1\$\{color\}/g' -e 's/\B\#(\w+)/\$\{color AE9961\}\1\$\{color\}/g' $CMDATA/tasks > $CMDATA/conkytasklist
+cat $CMDATA/conkytasklist
+exit 0
