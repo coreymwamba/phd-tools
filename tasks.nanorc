@@ -1,0 +1,14 @@
+syntax tasks "[Tt]([AaKkSs]|[OoDd.TtXx])*$"
+
+#tags
+color brightgreen "\B\@(\w+)"
+color brightblue "\B\#(\w+)"
+color brightcyan "\B\+(\w+)"
+
+#priorities for todo
+color brightred "\(A\)"
+color brightyellow "\(B\)"
+color brightmagenta "\(C\)"
+color green "\(D\)"
+
+
