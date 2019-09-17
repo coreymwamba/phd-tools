@@ -1,4 +1,7 @@
 #!/bin/bash
-sed -r -e 's/\B\@(\w+)/\$\{color 9987ed\}\1\$\{color\}/g' -e 's/\B\#(\w+)/\$\{color AE9961\}\1\$\{color\}/g' $CMDATA/tasks > $CMDATA/conkytasklist
-cat $CMDATA/conkytasklist
+#this will equally work with a todo.txt file
+#this takes a tasks list made in a program like stm or a todo.txt file and turns it into Conky text, with tag highlighting
+#change colours, tags to taste
+sed -r -e 's/\B\@(\w+)/\$\{color 9987ed\}\1\$\{color\}/g' -e 's/\B\#(\w+)/\$\{color AE9961\}\1\$\{color\}/g' $HOME/tasks > $HOME/conkytasklist
+cat $HOME/conkytasklist
 exit 0
