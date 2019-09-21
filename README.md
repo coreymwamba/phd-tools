@@ -49,7 +49,7 @@ Some people rely on word counts to motivate them. The word count in Libreoffice 
 
 If you have chapters or sections in separate documents (maybe [using a master document][lmd]), then use **phd-word-count**. It also uses *exiftool* to extract some custom properties from each document ([you can set these in Libreoffice][lcp]). For example, I set up a "Due" property for each section, to tell me when I needed to send something to my supervisors.
 
-![#](custom-props.jpg)
+![#](screen-1569045404.jpg)
 
 [co]: https://github.com/brndnmtthws/conky
 [lo]: https://libreoffice.org
