@@ -1,0 +1,56 @@
+#!/bin/sh
+# ui-matrix -- simple urgency/importance listing in bash
+# instructions
+
+tasksfile=$HOME/test-tasks
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+blue=$(tput setaf 4)
+bold=$(tput bold)
+boldoff=$(tput rmso)
+colouroff=$(tput sgr0)
+
+
+case $1 in
+ui)
+lhead="${blue}${bold}Neither urgent nor important${colouroff}"
+filter="\[ui\]"
+;;
+uI)
+lhead="${green}${bold}Not urgent, but Important${boldoff}${colouroff}"
+filter="\[uI\]"
+;;
+Ui)
+lhead="${yellow}${bold}Urgent, but not important${boldoff}${colouroff}"
+filter="\[Ui\]"
+;;
+UI)
+lhead="${red}${bold}Urgent and Important${boldoff}${colouroff}"
+filter="\[UI\]"
+;;
+"")
+ui-matrix UI
+ui-matrix Ui
+ui-matrix uI
+ui-matrix ui
+exit 0
+;;
+-h,help,--help)
+echo "${bold}ui-matrix{boldoff} FILTER TASKSFILE"
+echo "FILTER = ui | Ui | uI | UI"
+exit 0
+;;
+esac
+echo $lhead
+count=$(grep -c $filter $tasksfile)
+if [[  $count -ge "1" ]]; then
+TMP=$(mktemp /tmp/ui-m.XXXXXX)
+grep $filter $tasksfile  > $TMP
+sed -e "s/"$filter"//g" $TMP
+echo ""
+else
+echo "None."
+echo ""
+fi
+exit 0
