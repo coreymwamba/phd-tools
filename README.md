@@ -47,9 +47,16 @@ The original way I did it was messy, and I found a way through trials and consta
 
 Some people rely on word counts to motivate them. The word count in Libreoffice is useful, but sometimes you just need to know how many words there are without opening up the document. The two scripts do this, and a bit more.
 
-If you have chapters or sections in separate documents (maybe [using a master document][lmd]), then use **phd-word-count**. It also uses *exiftool* to extract some custom properties from each document ([you can set these in Libreoffice][lcp]). For example, I set up a "Due" property for each section, to tell me when I needed to send something to my supervisors.
+If you have everything in a single document, then **phd-final-count** will be useful. If you have chapters or sections in separate documents (maybe [using a master document][lmd]), then use **phd-word-count**. It also uses *exiftool* to extract some custom properties from each document ([you can set these in Libreoffice][lcp]). For example, I set up a "Due" property for each section, to tell me when I needed to send something to my supervisors.
 
 ![#](screen-1569045404.jpg)
+
+**phd-word-count** also generates a file that you can use in Conky.
+
+### 3. Tasks/to-do lists
+
+I have also included a simple *nano* style file for todo lists; and a script that generates a text file for Conky.
+
 
 [co]: https://github.com/brndnmtthws/conky
 [lo]: https://libreoffice.org
