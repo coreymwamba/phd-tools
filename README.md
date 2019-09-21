@@ -44,7 +44,48 @@ If you have everything in a single document, then **phd-final-count** will be us
 
 ### 3. Tasks/to-do lists
 
-I have also included a simple *nano* style file for todo lists; and a script that generates a text file for Conky. There is quite a bit of advice of writing to-do lists, and I won't replicate it here. Personally, I found the Urgent-Important Matrix useful, so I added a simple way being able to add that into a `TODO` or `tasks` text file.
+I have also included a simple `nanorc` style file for todo lists; and a script that generates a text file for Conky. There is quite a bit of advice of writing to-do lists, and I won't replicate it here. Personally, I found the Urgent-Important Matrix useful, so I added a simple way being able to add that into a `TODO` or `tasks` text file.
+
++ Urgent = to be done right way
++ Important = to be done by you because you care
+
+The text file is edited in `nano`. Somewhere in the task line, type one of the following marks:
+
++ [ui] - neither urgent nor important. Do other things instead
++ [uI] - not urgent, but important. Use this for things you want to plan for the future
++ [Ui] - Urgent, but not important. Use this for things you could ask other to help with or do.
++ [UI] - Urgent and important. Do this now.
+
+
+Here's a short example:
+
+```
+Chapter five! #ontology #narrativeturn due:2019-05-15 [UI]
+Write up CV [uI]
+Shopping for dinner [Ui]
+Tidy papers [ui]
+```
+
+You can then use the `ui-matrix` script to display them or , if you wish
+
+```
+[~]$ ui-matrix 
+*Urgent and Important*
+Chapter five! #ontology #narrativeturn due:2019-05-15 
+
+*Urgent, but not important*
+Shopping for dinner 
+
+*Not urgent, but Important*
+Write up CV 
+
+*Neither urgent nor important*
+Tidy papers 
+
+[~]$ ui-matrix UI
+*Urgent and Important*
+Chapter five! #ontology #narrativeturn due:2019-05-15 
+```
 
 [co]: https://github.com/brndnmtthws/conky
 [lo]: https://libreoffice.org
