@@ -1,14 +1,26 @@
 syntax tasks "[Tt]([AaKkSs]|[OoDd.TtXx])*$"
 
-#tags
-color brightgreen "\B\@(\w+)"
+# tags
+color brightwhite "\B\@(\w+)"
 color brightblue "\B\#(\w+)"
 color brightcyan "\B\+(\w+)"
 
-#priorities for todo
+# priorities for todo
 color brightred "\(A\)"
 color brightyellow "\(B\)"
 color brightmagenta "\(C\)"
-color green "\(D\)"
+color brightwhite "\(D\)"
 
+# dates due (yyyy-mm-dd)
+# simple regex, because regexps are not really a sensible way of checking dates
+color red "due:(19|20)[0-9-]{8}"
+
+# Urgent-Important Matrix-type ranking
+# The principle here is that tasks are given a score based on
+# urgency (u or U) and importance (i or I).
+
+color brightred,white "\[UI\]"
+color brightyellow,green "\[Ui\]"
+color brightmagenta,white "\[uI\]"
+color brightgreen,blue "\[ui\]"
 
