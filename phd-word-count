@@ -1,12 +1,12 @@
 #!/bin/bash
 # phd-word-count - counts words of ODT files in a folder, spits them out to txt, csv, and conky
 #setting variables here so you can use this in cron
-PHD_SECTIONS_PATH=/run/media/corey/CMDATA/phd/sections
+PHD_SECTIONS_PATH=$HOME/phd/sections
 PATH=$PATH:/usr/bin/vendor_perl
 csvoutput=/tmp/phd-csv-$(date -I).csv
 echo "filename,title,word count,keywords,due" > $csvoutput
 txtoutput=/tmp/phd-txt-$(date -I).txt
-output=/home/corey/phdwords
+output=$HOME/phd/phdwords
 conkyoutput=/tmp/phd-conky-$(date -I).txt
 
 #change extension to doc(x) if needed
@@ -18,8 +18,8 @@ D=$(exiftool -'Description' -S -t $f)
 DUE=$(exiftool -s3 -"User-defined" $f)
 fn=${f%.odt} # change to doc(x) if you need
 F=$(basename $fn)
-libreoffice --convert-to txt --outdir /home/corey/data $f > /dev/null
-WC=$(wc -w /home/corey/data/$F.txt | cut -d ' ' -f 1)
+libreoffice --convert-to txt --outdir $HOME/phd/txt $f > /dev/null
+WC=$(wc -w $HOME/phd/txt/$F.txt | cut -d ' ' -f 1)
 #how you want the text lines to be formatted
 # $T = Title; $K = Keywords; $D = Description $DUE = Due (set this as a user-defined property); $F = filename; $WC = word count
 
