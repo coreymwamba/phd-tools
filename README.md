@@ -55,8 +55,7 @@ If you have everything in a single document, then **phd-final-count** will be us
 
 ### 3. Tasks/to-do lists
 
-I have also included a simple *nano* style file for todo lists; and a script that generates a text file for Conky.
-
+I have also included a simple *nano* style file for todo lists; and a script that generates a text file for Conky. There is quite a bit of advice of writing to-do lists, and I won't replicate it here. Personally, I found the Urgent-Important Matrix useful, so I added a simple way being able to add that into a `TODO` or `tasks` text file.
 
 [co]: https://github.com/brndnmtthws/conky
 [lo]: https://libreoffice.org
