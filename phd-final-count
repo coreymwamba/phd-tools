@@ -1,11 +1,14 @@
 #!/bin/bash
+# I used this file word-count the final thesis, with all the sections in one document.
+# As with the other word count, the footnotes are not included
+
 pathforthesis=$HOME/phd-thesis
 for f in $pathforthesis/*.odt;
 do
 fn=${f%.odt}
-libreoffice --convert-to txt --outdir $HOME/data $f 
+libreoffice --convert-to txt --outdir $HOME/phd/final/ $f 
 done
 F=$(basename $fn)
-WC=$(wc -w $HOME/data/$F.txt | cut -d ' ' -f 1)
-echo $WC > $HOME/data/phdwords 
+WC=$(wc -w $HOME/phd/final/$F.txt | cut -d ' ' -f 1)
+echo $WC > $HOME/phd/final/phdwords 
 exit 0
