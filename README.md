@@ -17,31 +17,20 @@ The software I used:
 
 The original way I did it was messy, and I found a way through trials and constant errors. This will be much more ordered.
 
-### 1. Set up a private Git repository (or some form of version control store)
+### 1. Set up a private repository (or some form of version control store)
 
 1. Make a folder on your computer where your chapters/sections/media are going to be stored.
-    ```$ mkdir phd-git/```
 2. Sign up for an account on a Git hosting service
 3. Make a private repo (these are free on both Github and Gitlab) -- here, I will call it "phd-git"
 4. Follow instructions to link folder on computer to Git repo
-    ```
-    $ cd phd/  
-    $ git config --global user.name "username"
-    $ git config --global user.email "email_address"
-    $ git clone <repository path>
-    ```
-    That last command will make a folder in ```phd``` called ```phd-git```.
 5. Copy your documents into the folder and then upload them to the repo.
-    ```
-    $ cp -r phd/ phd-git/
-    $ git add .
-    $ git commit -m "initial upload"
-    $ git push origin master
-    ```
-    This step is an important one -- remember it!
 6. Optionally give access to supervisory team/critical friends. These people will also need accounts.
     On Github, you can have up to three "collaborators". Go to *Settings > Collaborators*
     On Gitlab, you can set *roles* for "members" of your project. Go to *Settings > Members*.
+    
+Alternatively, use webdav, Keybase, CVS, Onedrive... basically anything that will BACKUP YOUR WORK without you having to remember. Do this in at least two places and save yourself any potential heartache. I am saying this because there is seemingly **no** research handbook that will tell you to backup your work.
+
+Backup your work.
    
 ### 2. Word counts
 
