@@ -1,4 +1,4 @@
 #!/bin/bash
-sed -r  -e 's/\B\@(\w+)/\$\{color 9987ed\}\1\$\{color\}/g' -e 's/\B\#(\w+)/\$\{color AE9961\}\1\$\{color\}/g' -e 's/(\[ui\])/\$\{color ededed\}\1\$\{color\}/g' -e 's/(\[uI\])/\$\{color 00dd00\}\1\$\{color\}/g' -e 's/(\[Ui\])/\$\{color 0000dd\}\1\$\{color\}/g' -e 's/(\[UI\])/\$\{color ff0000\}\1\$\{color\}/g' -e 's/(due:)((19|20)[0-9-]{8})/\$\{color 99AE61\}\2\$\{color\}/g' $CMDATA/tasks > $CMDATA/conkytasklist
-cat $CMDATA/conkytasklist
+sed -r  -e 's/\B\@(\w+)/\$\{color 9987ed\}\1\$\{color\}/g' -e 's/\B\#(\w+)/\$\{color AE9961\}\1\$\{color\}/g' -e 's/(\[ui\])/\$\{color ededed\}\1\$\{color\}/g' -e 's/(\[uI\])/\$\{color 00dd00\}\1\$\{color\}/g' -e 's/(\[Ui\])/\$\{color 0000dd\}\1\$\{color\}/g' -e 's/(\[UI\])/\$\{color ff0000\}\1\$\{color\}/g' -e 's/(due:)((19|20)[0-9-]{8})/\$\{color 99AE61\}\2\$\{color\}/g' $HOME/phd/tasks > $HOME/phd/conkytasklist
+cat $HOME/phd/conkytasklist
 exit 0
