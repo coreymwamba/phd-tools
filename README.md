@@ -12,6 +12,7 @@ The software I used:
 + [Libreoffice/Openoffice][lo]
 + [exiftool][ex]
 + A Git hosting service (like [Github](https://github.com/), [Gitlab](https://about.gitlab.com/), &c.)
++ [Keybase][kb]
 
 ## setup
 
@@ -28,7 +29,7 @@ The original way I did it was messy, and I found a way through trials and consta
     On Github, you can have up to three "collaborators". Go to *Settings > Collaborators*
     On Gitlab, you can set *roles* for "members" of your project. Go to *Settings > Members*.
     
-Alternatively, use webdav, Keybase, CVS, Onedrive... basically anything that will BACKUP YOUR WORK without you having to remember. Do this in at least two places and save yourself any potential heartache. I am saying this because there is seemingly **no** research handbook that will tell you to backup your work.
+Alternatively, use webdav, Keybase, CVS, Onedrive... basically anything that will BACKUP YOUR WORK without you having to remember. Do this in at least **two places, as well as on external physical media** and save yourself any potential heartache. I am saying this because there is seemingly **no** research handbook that will tell you to backup your work.
 
 Backup your work.
    
@@ -90,5 +91,6 @@ Chapter five! #ontology #narrativeturn due:2019-05-15
 [co]: https://github.com/brndnmtthws/conky
 [lo]: https://libreoffice.org
 [ex]: https://sno.phy.queensu.ca/~phil/exiftool/
+[kb]: https://keybase.io
 [lmd]: https://help.libreoffice.org/6.3/en-GB/text/swriter/guide/globaldoc.html?DbPAR=WRITER#bm_id3145246
 [lcp]: https://help.libreoffice.org/6.3/en-GB/text/shared/guide/viewing_file_properties.html?DbPAR=SHARED#bm_id3152594
