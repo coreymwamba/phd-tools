@@ -29,7 +29,7 @@ The original way I did it was messy, and I found a way through trials and consta
     On Github, you can have up to three "collaborators". Go to *Settings > Collaborators*
     On Gitlab, you can set *roles* for "members" of your project. Go to *Settings > Members*.
     
-Alternatively, use webdav, Keybase, CVS, Onedrive... basically anything that will BACKUP YOUR WORK without you having to remember. Do this in at least **two places, as well as on external physical media** and save yourself any potential heartache. I am saying this because there is seemingly **no** research handbook that will tell you to backup your work.
+Alternatively, use webdav, Keybase, CVS, Onedrive, (maybe) Dropbox... basically anything that will BACKUP YOUR WORK without you having to remember. Do this in at least **two places, as well as on external physical media** and save yourself any potential heartache. I am saying this because there is seemingly **no** research handbook that will tell you to backup your work.
 
 Backup your work.
    
@@ -101,6 +101,8 @@ Here's a real-world example, in pictures. This is my actual tasks list:
 The different terms are highlighted, meaning that I can quickly skim the file. 
 
 I then use `task-colour-list` to produce a file that Conky can display. This stops me from *ignoring* the tasks.
+
+![#](screen-1569771070.jpg)
 
 
 [co]: https://github.com/brndnmtthws/conky
