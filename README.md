@@ -60,10 +60,10 @@ The text file is edited in `nano`. Somewhere in the task line, I type one of the
 
 I also have the following codes set up:
 
-+ **\#***word_term* - concepts
-+ **\+***word_term* - projects
-+ **@***word_term* - agents (things or people)
-+ **due:***yyyy-mm-dd* - due by (I rarely use this though)
++ \#*word_term* - concepts
++ \+*word_term* - projects
++ @*word_term* - agents (things or people)
++ due:*yyyy-mm-dd* - due by (I rarely use this though)
 
 Here's a short example:
 
