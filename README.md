@@ -45,7 +45,7 @@ If you have everything in a single document, then **phd-final-count** will be us
 
 ### 3. Tasks/to-do lists
 
-I have also included a simple `nanorc` style file for todo lists; and a script that generates a text file for Conky. There is quite a bit of advice of writing to-do lists, and I won't replicate it here. Personally, I found the Urgent-Important Matrix useful, so I added a simple way being able to add that into a `TODO` or `tasks` text file.
+I have also included a simple `nanorc` style file for todo lists; and a script that generates a text file for Conky. There is quite a bit of advice on writing to-do lists, and I won't replicate it here. Personally, I found the Urgent-Important Matrix useful, so I added a simple way being able to add that into a `TODO` or `tasks` text file.
 
 + Urgent (*U*) = to be done right way
 + Important (*I*) = to be done by you because you care
@@ -103,6 +103,8 @@ The different terms are highlighted, meaning that I can quickly skim the file.
 I then use `task-colour-list` to produce a file that Conky can display. This stops me from *ignoring* the tasks.
 
 ![#](screen-1569771070.jpg)
+
+The squares replace the UI matrix code, and the projects, concepts, and agents are coloured.
 
 
 [co]: https://github.com/brndnmtthws/conky
