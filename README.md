@@ -47,8 +47,9 @@ If you have everything in a single document, then **phd-final-count** will be us
 
 I have also included a simple `nanorc` style file for todo lists; and a script that generates a text file for Conky. There is quite a bit of advice of writing to-do lists, and I won't replicate it here. Personally, I found the Urgent-Important Matrix useful, so I added a simple way being able to add that into a `TODO` or `tasks` text file.
 
-+ Urgent = to be done right way
-+ Important = to be done by you because you care
++ Urgent (*U*) = to be done right way
++ Important (*I*) = to be done by you because you care
+
 
 The text file is edited in `nano`. Somewhere in the task line, type one of the following marks:
 
@@ -57,17 +58,23 @@ The text file is edited in `nano`. Somewhere in the task line, type one of the f
 + [Ui] - Urgent, but not important. Use this for things you could ask other to help with or do.
 + [UI] - Urgent and important. Do this now.
 
+I also have the following codes set up:
+
++ **\#****word_term* - concepts
++ **\+****word_term* - projects
++ **@****word_term* - agents (things or people)
++ **due:****yyyy-mm-dd* - due by (I rarely use this though)
 
 Here's a short example:
 
 ```
 Chapter five! #ontology #narrativeturn due:2019-05-15 [UI]
-Write up CV [uI]
-Shopping for dinner [Ui]
+Write up +CV [uI]
+Shopping for dinner: or maybe @thatlovelyperson can do it? [Ui]
 Tidy papers [ui]
 ```
 
-You can then use the `ui-matrix` script to display them or , if you wish
+You can then use the `ui-matrix` script to display them or filter them.
 
 ```
 [~]$ ui-matrix 
@@ -87,6 +94,11 @@ Tidy papers
 *Urgent and Important*
 Chapter five! #ontology #narrativeturn due:2019-05-15 
 ```
+Here's a real-world example, in pictures. This is my actual tasks list:
+
+
+
+
 
 [co]: https://github.com/brndnmtthws/conky
 [lo]: https://libreoffice.org
