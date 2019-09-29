@@ -51,7 +51,7 @@ I have also included a simple `nanorc` style file for todo lists; and a script t
 + Important (*I*) = to be done by you because you care
 
 
-The text file is edited in `nano`. Somewhere in the task line, type one of the following marks:
+The text file is edited in `nano`. Somewhere in the task line, I type one of the following marks:
 
 + [ui] - neither urgent nor important. Do other things instead
 + [uI] - not urgent, but important. Use this for things you want to plan for the future
@@ -96,8 +96,11 @@ Chapter five! #ontology #narrativeturn due:2019-05-15
 ```
 Here's a real-world example, in pictures. This is my actual tasks list:
 
+![#](grab-1569770376.jpg)
 
+The different terms are highlighted, meaning that I can quickly skim the file. 
 
+I then use `task-colour-list` to produce a file that Conky can display. This stops me from *ignoring* the tasks.
 
 
 [co]: https://github.com/brndnmtthws/conky
