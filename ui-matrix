@@ -3,7 +3,7 @@
 # Corey Mwamba, 2020
 # fields:
 # on    to      task/event      due     priority
-tasksfile='/keybase/private/coreymwamba/tasks'
+tasksfile='~/tasks'
 dateformat='%a %d %b %Y, %I:%M%p'
 today=$(date +"%s")
 red=$(tput setaf 1)
