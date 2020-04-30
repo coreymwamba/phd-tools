@@ -1,48 +1,76 @@
-#!/bin/sh
+#!/bin/bash
 # ui-matrix -- simple urgency/importance listing in bash
-
-# change this to the location of the tasks or todo file
-tasksfile=$HOME/tasks
-
+# Corey Mwamba, 2020
+# fields:
+# on    to      task/event      due     priority
+tasksfile='/keybase/private/coreymwamba/tasks'
+dateformat='%a %d %b %Y, %I:%M%p'
+today=$(date +"%s")
 red=$(tput setaf 1)
+cr='${color red}'
 green=$(tput setaf 2)
+cg='${color green}'
 yellow=$(tput setaf 3)
+cy='${color yellow}'
 blue=$(tput setaf 4)
+cb='${color blue}'
 bold=$(tput bold)
 boldoff=$(tput rmso)
 colouroff=$(tput sgr0)
+co='${color}'
 
+generate_values (){
+ats='\B\@([A-Za-z0-9\-\_]+)'
+tags='\B\#([A-Za-z0-9\-\_\+]+)'
+proj='\B\+([A-Za-z0-9\-\_\+]+)'
+onv='(on:)([0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?)'
+tov='(to:)([0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?)'
+duev='(due:)([0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?)'
+genv='((on:)|(to:)|(due:))([0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?)'
+filv='\B<([A-Za-z0-9\-\_\.\ \,\$\!\:\/]+)>'
+priv='(\[UI\])|(\[Ui\])|(\[uI\])|(\[ui\])'
 
-case $1 in
-ui)
-lhead="${blue}${bold}Neither urgent nor important${colouroff}"
-filter="\[ui\]"
-;;
-uI)
-lhead="${green}${bold}Not urgent, but Important${boldoff}${colouroff}"
-filter="\[uI\]"
-;;
-Ui)
-lhead="${yellow}${bold}Urgent, but not important${boldoff}${colouroff}"
-filter="\[Ui\]"
-;;
-UI)
-lhead="${red}${bold}Urgent and Important${boldoff}${colouroff}"
-filter="\[UI\]"
-;;
-"")
-ui-matrix UI
-ui-matrix Ui
-ui-matrix uI
-ui-matrix ui
-exit 0
-;;
--h,help,--help)
-echo "${bold}ui-matrix{boldoff} FILTER TASKSFILE"
-echo "FILTER = ui | Ui | uI | UI"
-exit 0
-;;
-esac
+readarray -t line < $tasksfile
+for x in "${line[@]}"; do
+on_var=$(echo "$x" | grep -o -E $onv)
+to_var=$(echo "$x" | grep -o -E $tov)
+due_var=$(echo "$x" | grep -o -E $duev)
+pri_var=$(echo "$x" | grep -o -E $priv)
+spacer="                        "
+tasktext=$(sed -r "s/$genv|$priv//g" <<< $x)
+if [ ! -z "$on_var" ] && [ -z "$to_var" ] && [ -z "$due_var" ]; then
+on_date=$(date +"%s" -d "${on_var/on:/}")
+if [ "$on_date" -ge "$today" ]; then
+echo "$on_date»$spacer»${tasktext## }»$spacer»$pri_var"
+fi
+fi
+
+if [ ! -z "$on_var" ] && [ ! -z "$to_var" ]; then
+on_date=$(date +"%s" -d "${on_var/on:/}")
+to_date=$(date +"%s" -d "${to_var/to:/}")
+if [ "$on_date" -ge "$today" ]; then
+echo "$on_date»$to_date»${tasktext##  }»$spacer»$spacer"
+fi
+fi
+
+if [ ! -z "$due_var" ]; then
+due_date=$(date +"%s" -d "${due_var/due:/}")
+echo "$spacer»$spacer»${tasktext## }»$due_date»$pri_var"
+fi
+
+if [ ! -z "$on_var" ] && [ ! -z "$to_var" ] && [ ! -z "$due_var" ]; then
+on_date=$(date +"%s" -d "${on_var/on:/}")
+to_date=$(date +"%s" -d "${to_var/to:/}")
+due_date=$(date +"%s" -d "${due_var/due:/}")
+if [ "$on_date" -ge "$today" ]; then
+echo "$on_date»$to_date»${tasktext## }»$due_date»$pri_var"
+fi
+fi
+unset
+done
+}
+
+generate_list (){
 echo $lhead
 count=$(grep -c $filter $tasksfile)
 if [[  $count -ge "1" ]]; then
@@ -50,8 +78,137 @@ TMP=$(mktemp /tmp/ui-m.XXXXXX)
 grep $filter $tasksfile  > $TMP
 sed -e "s/"$filter"//g" $TMP
 echo ""
+rm $TMP
 else
 echo "None."
 echo ""
 fi
+
+exit 0
+}
+
+generate_conky (){
+echo $chead
+count=$(grep -c $filter $tasksfile)
+if [[  $count -ge "1" ]]; then
+TMP=$(mktemp /tmp/ui-m.XXXXXX)
+grep $filter $tasksfile > $TMP
+sed -r -e "s/"$filter"//g" -e 's/\B\@([A-Za-z0-9\-\_]+)/\$\{color 61AE61\}\1\$\{color\}/g' \
+    -e 's/\B\#([A-Za-z0-9\-\_\+]+)/\$\{color AE9961\}\1\$\{color\}/g' \
+    -e 's/\B\+([A-Za-z0-9\-\_\+]+)/\$\{color 6199AE\}\1\$\{color\}/g' \
+    -e "s/(due:)([0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?)/\$\{color AE6161\}\2\$\{color\}/g" \
+    -e 's/(on:)([0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?)/\$\{color 61AE61\}\2\$\{color\}/g' \
+    -e 's/(to:)([0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?)/\$\{color 6161AE\}\2\$\{color\}/g' \
+    -e "s/\B<([A-Za-z0-9\-\_\.\ \,\$\!\:\/]+)>/\$\{font Liberation Mono:size=10\}\1\$\{font\}/g" $TMP
+echo ""
+rm $TMP
+else
+echo "None."
+echo ""
+fi
+exit 0
+}
+
+case $1 in
+ui)
+lhead="${blue}${bold}Neither urgent nor important${colouroff}"
+chead='${color 0000ff}Neither urgent nor important${color}'
+filter="\[ui\]"
+;;
+uI)
+lhead="${green}${bold}Not urgent, but Important${boldoff}${colouroff}"
+chead='${color 00ff00}Not urgent, but Important${color}'
+filter="\[uI\]"
+;;
+Ui)
+lhead="${yellow}${bold}Urgent, but not important${boldoff}${colouroff}"
+chead='${color ffff00}Urgent, but not important${color}'
+filter="\[Ui\]"
+;;
+UI)
+lhead="${red}${bold}Urgent and Important${boldoff}${colouroff}"
+chead='${color #ff0000}Urgent and Important${color}'
+filter="\[UI\]"
+;;
+
+e)
+TMP=$(mktemp /tmp/ui-m.XXXXXX)
+echo ON»TO»TASK/EVENT»DUE»PRIORITY > $TMP
+generate_values | sort -g  >> $TMP
+cat $TMP | awk -F» '{ if ($1 ~ /[:0-9:]/) {$1 = strftime("%a %d %b %Y, %I:%M%p", $1)}; if ($2 ~ /[:0-9:]/) {$2 = strftime("%a %d %b %Y, %I:%M%p", $2)};if ($4 ~ /[:0-9:]/) {$4 = strftime("%a %d %b %Y, %I:%M%p", $4)}; print}'|  column -s » -t
+rm $TMP
+;;
+
+a)
+TMP=$(mktemp /tmp/ui-m.XXXXXX)
+generate_values | sort -g  > $TMP
+cat $TMP | awk -F»  '{ \
+if ($1  ~ /^[0-9]/ && $2 ~ /^[0-9]/ || $1  ~ /^[0-9]/) { \
+  ds=$1; de=$2; dur=de-ds;
+}
+if (ds  ~ /^[0-9]/) { \
+
+        if (strftime("%R",ds) != "00:00") { \
+        ds = strftime("%a %d %b, %I:%M%p", ds) \
+        } \
+        else {ds = strftime("%a %d %b",ds )} \
+} \
+if (de  ~ /^[0-9]/) { \
+        if (strftime("%R",de) != "00:00")  { \
+        de = strftime("%a %d %b, %I:%M%p", de) \
+        } \
+        else {de = strftime("%a %d %b",de )} \
+} \
+
+if (dur > 0 ) { \
+  dtstr = ds " - " de \
+  } \
+
+else if (dur < 1 && $1  ~ /^[0-9]/) { \
+        if  (strftime("%R",$1) != "00:00")  { \
+                dtstr = strftime("%a %d %b, %I:%M%p", $1) \
+        } \
+        else {dtstr = strftime("%a %d %b", $1)} \
+} \
+else {dtstr = ""} \
+if ($4 ~ /^[0-9]/) { \
+        if  (strftime("%R",$4) != "00:00")  { \
+        dut = strftime("%a %d %b, %I:%M%p", $4) \
+        } \
+        else {dut = strftime("%a %d %b", $4)}; \
+        due = "${color red}" dut "${color}"
+        } \
+
+else {due = ""}; \
+ printf "${font Liberation Sans:size=10:style=bold}" dtstr due "${font} " $3 "\n" }' | sed -r -e "s/\B\@([A-Za-z0-9\-\_]+)/\$\{color 61AE61\}\1\$\{color\}/g"  \
+ -e 's/\B\#([A-Za-z0-9\-\_\+]+)/\$\{color AE9961\}\1\$\{color\}/g'  \
+ -e 's/\B\+([A-Za-z0-9\-\_\+]+)/\$\{color 6199AE\}\1\$\{color\}/g'
+rm $TMP
+;;
+
+all)
+ui-matrix UI $2
+ui-matrix Ui $2
+ui-matrix uI $2
+ui-matrix ui $2
+exit 0
+;;
+-h,help,--help)
+echo "${bold}ui-matrix{boldoff} FILTER FMT"
+echo "FILTER = ui | Ui | uI | UI | a | e"
+echo "FMT = t(ext) | c(onky)"
+exit 0
+;;
+esac
+
+case $2 in
+t)
+generate_list
+exit 0
+;;
+c)
+generate_conky
+exit 0
+;;
+esac
 exit 0
