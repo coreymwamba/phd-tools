@@ -1,19 +1,29 @@
-syntax tasks "[Tt]([AaKkSs]|[OoDd.TtXx])*$"
+syntax tasks "([Tt][Aa][Ss][Kk][Ss]|[Tt][Oo][Dd][Oo])(\.txt)?"
+comment "!"
 
-# tags
-color brightwhite "\B\@(\w+)"
-color brightblue "\B\#(\w+)"
-color brightcyan "\B\+(\w+)"
+# context (or person)
+color brightwhite "\B\@([A-Za-z0-9\-\_]+)"
+# hashtag
+color brightblue "\B\#([A-Za-z0-9\-\_]+)"
+# project
+color brightcyan "\B\+([A-Za-z0-9\-\_]+)"
+# files/locations
+color green "<([[:graph:]]*)>"
 
-# priorities for todo
-color brightred "\(A\)"
-color brightyellow "\(B\)"
-color brightmagenta "\(C\)"
-color brightwhite "\(D\)"
 
-# dates due (yyyy-mm-dd)
+# priorities for todo.txt
+color brightred,white "\(A\)"
+color brightyellow,green "\(B\)"
+color brightmagenta,white "\(C\)"
+color brightwhite,blue "\(D\)"
+
+# dates due, on and to (yyyy-mm-ddThh:mm)
 # simple regex, because regexps are not really a sensible way of checking dates
-color red "due:(19|20)[0-9-]{8}"
+color brightred "due:[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?"
+color brightyellow "on:[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?"
+color brightgreen "to:[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?"
+color brightblue "maybe:[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}([AaPm]\.?[Mm]\.?)?)?"
+
 
 # Urgent-Important Matrix-type ranking
 # The principle here is that tasks are given a score based on
@@ -23,4 +33,3 @@ color brightred,white "\[UI\]"
 color brightyellow,green "\[Ui\]"
 color brightmagenta,white "\[uI\]"
 color brightgreen,blue "\[ui\]"
-
